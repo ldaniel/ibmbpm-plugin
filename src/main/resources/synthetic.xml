@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+THIS CODE AND INFORMATION ARE PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS
+FOR A PARTICULAR PURPOSE. THIS CODE AND INFORMATION ARE NOT SUPPORTED BY XEBIALABS.
+-->
+<synthetic xmlns="http://www.xebialabs.com/deployit/synthetic" 
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+           xsi:schemaLocation="http://www.xebialabs.com/deployit/synthetic synthetic.xsd">
+    <type type="rabobpm.OfflinePackage" 
+          deployable-type="rabobpm.OfflinePackageSpec"
+          extends="powershell.ExtensiblePowerShellDeployedArtifact" 
+          container-type="rabobpm.WSAdminClient"          
+          description="IBM BPM Offline Package">
+               
+        <generate-deployable type="rabobpm.OfflinePackageSpec" 
+                             description="Offline package to be deployed on IBM BPM Server" 
+                             extends="powershell.BasePowerShellDeployableFileArtifact"/>
+        
+        <!-- hidden -->
+        <property name="createScript" default="ibmbpm/deploy-offlinepackage.ps1" hidden="true"/>
+        <property name="createOrder" kind="integer" default="54" hidden="true"/>
+        <property name="createVerb" default="Copy" hidden="true"/>
+    </type>
+    
+    <type type="rabobpm.WSAdminClient" 
+          extends="powershell.BasePowerShellContainer" 
+          description="BPM WsAdmin Client">
+      
+        <!-- public -->
+        <property name="wsadminBinPath" description="Folder containing the wsadmin client (e.g. 'D:\IBM\WebSphere\AppServer\profiles\ProcSrv01\bin\')" required="true"/>
+        <property name="wsadminUser" description="Admin user to connect to wsadmin command line tool" required="true"/>
+        <property name="wsadminPassword" description="Admin password to connect to wsadmin command line tool" required="true" password="true" />
+        <property name="TempPath" description="Temp folder on target server to receive the offline package file" required="true" />
+    </type>
+</synthetic>
