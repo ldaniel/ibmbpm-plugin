@@ -32,5 +32,8 @@ FOR A PARTICULAR PURPOSE. THIS CODE AND INFORMATION ARE NOT SUPPORTED BY XEBIALA
         <property name="wsadminUser" description="Admin user to connect to wsadmin command line tool" required="true"/>
         <property name="wsadminPassword" description="Admin password to connect to wsadmin command line tool" required="true" password="true" />
         <property name="TempPath" description="Temp folder on target server to receive the offline package file" required="true" />
+		
+		<!-- hidden -->
+		<method name="checkcontainer" label="Check folders" description="Check folders creation on server" script="ibmbpm/check-container.ps1"/>
     </type>
 </synthetic>
